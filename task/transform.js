@@ -10,13 +10,21 @@ delete style.draft;
 delete style.id;
 delete style.modified;
 delete style.owner;
+
 style.sources = {
   "composite": {
     "type": "vector",
     "url": "https://osm2vectortiles.tileserver.com/v3.json"
   }
 };
-style.sprite = "https://klokantech.github.io/osm-bright-gl-style/sprite";
+
+if(fs.existsSync('../icons')) {
+  var slug = process.env.TRAVIS_REPO_SLUG;
+  var user = slug[0];
+  var repo = slug[1];
+  style.sprite = "https://"+user+".github.io/"+repo+"/sprite";
+}
+
 style.glyphs = "//fonts.openmaptiles.org/{fontstack}/{range}.pbf";
 
 style.layers.forEach(function(layer) {
@@ -25,8 +33,6 @@ style.layers.forEach(function(layer) {
   }
 });
 
-
 fs.writeFileSync('build/style.json', JSON.stringify(style, null, 2), 'utf8');
 
 };
-

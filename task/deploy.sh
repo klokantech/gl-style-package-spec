@@ -5,14 +5,18 @@ set -o errexit
 set -ev
 
 npm install -g mapbox-gl-style-spec
-npm install spritezero-cli
+if [ -d ../icons ]; then
+  npm install spritezero-cli
+fi
 npm install fs-extra
 
 gl-style-validate ../style.json
 rm -rf build
 mkdir build
-./node_modules/.bin/spritezero build/sprite ../icons/
-./node_modules/.bin/spritezero --retina build/sprite@2x ../icons/
+if [ -d ../icons ]; then
+  ./node_modules/.bin/spritezero build/sprite ../icons/
+  ./node_modules/.bin/spritezero --retina build/sprite@2x ../icons/
+fi
 node task/index.js
 
 git config --global user.email "nobody@nobody.org"
