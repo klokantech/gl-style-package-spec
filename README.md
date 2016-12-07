@@ -8,6 +8,7 @@ Best practice for storing complete "GL style" for a map in a GitHub repo, gist, 
 - Icons used in style saved as SVG files inside `icons/`
 
 ## Installation
+- [Enable Travis for your repository](https://docs.travis-ci.com/user/getting-started/#To-get-started-with-Travis-CI%3A)
 - Copy `.travis.sample.yml` into your repository master as `.travis.yml`
 - Generate [personale access token](https://github.com/settings/tokens/new) if you don't have any
 - Encrypt it using `travis encrypt -r user/repo GITHUB_TOKEN=[the token here]` (install travis using `gem install travis`)
@@ -15,7 +16,7 @@ Best practice for storing complete "GL style" for a map in a GitHub repo, gist, 
 ```
 env:
   global:
-    - secure: [encrypted token here]
+    - secure: [encrypted token here without quotes]
 ```
 
 ## Ideas
