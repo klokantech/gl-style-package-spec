@@ -13,6 +13,3 @@ script:
   - git clone https://github.com/klokantech/gl-style-package-spec.git
   - cd gl-style-package-spec
   - bash ./task/deploy.sh
-env:
-  global:
-    - secure: WyPrhUreX9NEy2U/mn4AnBcrnojWsRpNzQYK1Lb+jFb9Kg1WonlR7ewmFKVh0ZFhoiPlXSWnGDdItnu77ykgB/uJOb8S8csLIGBv3kljirO/5V30u7UaW9S6zQr2+Y8YF3jhEOPkmMOkkBteX2gzyZZxccN9Gm5INPMTlG0bqXbeXPwLtc81W5taENLEh0Chy5kP8A7rfdfJxzOWGFRyqLzjGG4E4AKTpCpswteZTFb7Qwzp+1K2f2FgSvXQ8eMFDDpX2zHQ7ZABdXu6VvR4SvvoPQQLIbb3rXxFaF8BEzBbtclAs4iJ3YmgvvzbAu80o/DLq0twd/4HmKlpPZNy6xehaRSe9yhIB7ZCR71uqS3eGKD9TnzBCFplmHgvsFK3OmB0iNHU0cVQyeFuzR5rHroG+egP+GlvGN8Fvs+60Y7phes+eW81F3gziy1ECuMK6NaRynXb1KhRlK6gmCuwkZXJlFKKJRVopINV1D/hDzVrryl18OuiHlow54dxWr9NqZ7zq0Lfca/N2i0ZnzixSfyqxWFZB/YTJFeTDL0//KaIPX7ewb/X129pLm8bTp2kT3vIEwN2NiG+OROSEy1MdEHCWIY9WhL46/s+43zTCNyysqxJ/wKiMD9IHS9sQBLbs5pRrR6RNvCzKFFbgdLv5OdwWkvR+F1MGD3dixbJ9hA=
