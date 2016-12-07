@@ -3,7 +3,7 @@
 Best practice for storing complete "GL style" for a map in a GitHub repo, gist, directory or a zip package.
 
 ## Map style preview
-After following steps you will get free preview of your map on github.io pages.
+After following steps you will get free preview of your map on github.io pages like [OSM Bright GL style preview](https://openmaptiles.github.io/osm-bright-gl-style/#3.46/47.20/14.98).
 
 
 ### Requirements
