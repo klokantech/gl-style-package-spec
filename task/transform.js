@@ -11,12 +11,12 @@ delete style.id;
 delete style.modified;
 delete style.owner;
 
-style.sources = {
-  "composite": {
+if (style.sources['openmaptiles']) {
+  style.sources['openmaptiles'] = {
     "type": "vector",
     "url": "https://osm2vectortiles.tileserver.com/v3.json"
   }
-};
+}
 
 if(fs.existsSync('../icons')) {
   var slug = process.env.TRAVIS_REPO_SLUG;
