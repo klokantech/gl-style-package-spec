@@ -5,10 +5,10 @@ node_js:
 branches:
   only:
   - master
-#addons:
-#  apt:
-#    sources: [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.5' ]
-#    packages: [ 'clang-3.5', 'libstdc++-4.9-dev', 'libstdc++6' ]
+addons:
+  apt:
+    sources: [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.5' ]
+    packages: [ 'libstdc++6' ]
 script:
   - git clone https://github.com/klokantech/gl-style-package-spec.git
   - cd gl-style-package-spec
