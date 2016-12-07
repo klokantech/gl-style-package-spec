@@ -19,7 +19,7 @@ if (style.sources['openmaptiles']) {
 }
 
 if(fs.existsSync('../icons')) {
-  var slug = process.env.TRAVIS_REPO_SLUG;
+  var slug = process.env.TRAVIS_REPO_SLUG.split('/');
   var user = slug[0];
   var repo = slug[1];
   style.sprite = "https://"+user+".github.io/"+repo+"/sprite";
