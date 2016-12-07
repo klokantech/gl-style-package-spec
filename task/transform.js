@@ -17,7 +17,7 @@ style.sources = {
   }
 };
 style.sprite = "https://klokantech.github.io/osm-bright-gl-style/sprite";
-//style.glyphs = "fonts/{fontstack}/{range}.pbf";
+style.glyphs = "//fonts.openmaptiles.org/{fontstack}/{range}.pbf";
 
 style.layers.forEach(function(layer) {
   if(layer.layout && layer.layout['text-font']) {
