@@ -2,6 +2,31 @@
 
 Best practice for storing complete "GL style" for a map in a GitHub repo, gist, directory or a zip package.
 
+## Map style preview
+After following steps you will get free preview of your map on github.io pages.
+
+
+### Requirements
+- GitHub repository
+- Style saved as a `style.json` in root
+- Icons used in style saved as SVG files inside `icons/`
+
+### Installation
+Warning: Following steps will automatically create/rewrite content of you `gh-pages` branch on every push you make.
+- [Enable Travis for your repository](https://docs.travis-ci.com/user/getting-started/#To-get-started-with-Travis-CI%3A)
+- Copy `.travis.sample.yml` into your repository master as `.travis.yml`
+- Generate [personal access token](https://github.com/settings/tokens/new) if you don't have any
+- Encrypt it using `travis encrypt -r user/repo GITHUB_TOKEN=[the token here]` (install travis using `gem install travis`)
+- Insert following to your `.travis.yml`
+```
+env:
+  global:
+    - secure: [encrypted token here without quotes]
+```
+- Visit `https://[user].github.io/[repo]` in your browser.
+
+
+## Ideas
 Discussion, specification and validator for correctness and completeness of storing map styles described in MapBox GL Style JSON together with all related assets in a single directory or github repository.
 
 The spec should solve these issues:
