@@ -25,7 +25,7 @@ if(opts.needSprite) {
   delete style.sprite;
 }
 
-style.glyphs = "//fonts.openmaptiles.org/{fontstack}/{range}.pbf";
+style.glyphs = "https://fonts.openmaptiles.org/{fontstack}/{range}.pbf";
 
 style.layers.forEach(function(layer) {
   if(layer.layout && layer.layout['text-font']) {
