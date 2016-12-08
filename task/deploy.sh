@@ -17,7 +17,7 @@ if [ -d ../icons ]; then
   ./node_modules/.bin/spritezero build/sprite ../icons/
   ./node_modules/.bin/spritezero --retina build/sprite@2x ../icons/
 fi
-node task/index.js
+node task/deploy.js
 
 git config --global user.email "openmaptiles@klokantech.com"
 git config --global user.name "OpenMapTiles Travis"

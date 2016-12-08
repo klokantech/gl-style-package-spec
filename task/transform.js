@@ -1,10 +1,8 @@
-var fs = require('fs-extra');
 
-exports.transform = function() {
+exports.adjustStyle = function(opts) {
+	
+var style = opts.style;
 
-fs.copySync('index.html', 'build/index.html');
-
-var style = JSON.parse(fs.readFileSync('../style.json', 'utf8'));
 delete style.created;
 delete style.draft;
 delete style.id;
@@ -18,11 +16,11 @@ if (style.sources['openmaptiles']) {
   }
 }
 
-if(fs.existsSync('../icons')) {
-  var slug = process.env.TRAVIS_REPO_SLUG.split('/');
+if(opts.needSprite) {
+  var slug = opts.slug.split('/');
   var user = slug[0];
   var repo = slug[1];
-  style.sprite = "https://"+user+".github.io/"+repo+"/sprite";
+  style.sprite = "http://openmaptiles.org/"+repo+"/sprite";
 }
 
 style.glyphs = "//fonts.openmaptiles.org/{fontstack}/{range}.pbf";
@@ -32,7 +30,5 @@ style.layers.forEach(function(layer) {
     layer.layout['text-font'] = layer.layout['text-font'].slice(0,1);
   }
 });
-
-fs.writeFileSync('build/style.json', JSON.stringify(style, null, 2), 'utf8');
 
 };
