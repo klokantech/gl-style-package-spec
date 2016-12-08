@@ -21,6 +21,8 @@ if(opts.needSprite) {
   var user = slug[0];
   var repo = slug[1];
   style.sprite = "https://"+user+".github.io/"+repo+"/sprite";
+} else {
+  delete style.sprite;
 }
 
 style.glyphs = "//fonts.openmaptiles.org/{fontstack}/{range}.pbf";
