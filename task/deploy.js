@@ -1,17 +1,25 @@
 var fs = require('fs-extra');
-var adjustStyle = require('./transform.js').adjustStyle;
+var transform = require('./transform.js');
 
 
 fs.copySync('index.html', 'build/index.html');
 
-var style = JSON.parse(fs.readFileSync('../style.json', 'utf8'));
+var stylePath = '../style.json';
+
 var needSprite = fs.existsSync('../icons');
 var slug = process.env.TRAVIS_REPO_SLUG;
 
-adjustStyle({
+var style = JSON.parse(fs.readFileSync(stylePath, 'utf8'));
+transform.adjustStyleForCdn({
   style: style,
   needSprite: needSprite,
   slug: slug
 });
+fs.writeFileSync('build/style-cdn.json', JSON.stringify(style, null, 2), 'utf8');
 
-fs.writeFileSync('build/style.json', JSON.stringify(style, null, 2), 'utf8');
+style = JSON.parse(fs.readFileSync(stylePath, 'utf8'));
+transform.adjustStyleForLocal({
+  style: style,
+  needSprite: needSprite
+});
+fs.writeFileSync('build/style-local.json', JSON.stringify(style, null, 2), 'utf8');

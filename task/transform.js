@@ -1,5 +1,5 @@
 
-exports.adjustStyle = function(opts) {
+exports.adjustStyleForCdn = function(opts) {
 	
 var style = opts.style;
 
@@ -32,5 +32,33 @@ style.layers.forEach(function(layer) {
     layer.layout['text-font'] = layer.layout['text-font'].slice(0,1);
   }
 });
+
+};
+
+
+exports.adjustStyleForLocal = function(opts) {
+	
+var style = opts.style;
+
+delete style.created;
+delete style.draft;
+delete style.id;
+delete style.modified;
+delete style.owner;
+
+if (style.sources['openmaptiles']) {
+  style.sources['openmaptiles'] = {
+      "type": "vector",
+      "url": "mbtiles://{openmaptiles}"
+  }
+}
+
+if(opts.needSprite) {
+  style.sprite = "{styleJsonFolder}/sprite";
+} else {
+  delete style.sprite;
+}
+
+style.glyphs = "{fontstack}/{range}.pbf";
 
 };
