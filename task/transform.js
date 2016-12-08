@@ -20,7 +20,7 @@ if(opts.needSprite) {
   var slug = opts.slug.split('/');
   var user = slug[0];
   var repo = slug[1];
-  style.sprite = "http://openmaptiles.org/"+repo+"/sprite";
+  style.sprite = "https://"+user+".github.io/"+repo+"/sprite";
 }
 
 style.glyphs = "//fonts.openmaptiles.org/{fontstack}/{range}.pbf";
