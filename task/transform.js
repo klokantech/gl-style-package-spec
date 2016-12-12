@@ -12,7 +12,7 @@ delete style.owner;
 if (style.sources['openmaptiles']) {
   style.sources['openmaptiles'] = {
     "type": "vector",
-    "url": "https://osm2vectortiles.tileserver.com/v3.json"
+    "url": "https://free.tilehosting.com/data/v3.json?key=tXiQqN3lIgskyDErJCeY"
   }
 }
 
