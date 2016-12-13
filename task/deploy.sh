@@ -11,6 +11,7 @@ fi
 npm install fs-extra
 
 gl-style-validate ../style.json
+node task/check-fonts.js
 rm -rf build
 mkdir build
 if [ -d ../icons ]; then
@@ -28,5 +29,3 @@ git init
 git add .
 git commit -m "Deploy to Github Pages"
 git push --force --quiet "https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git" master:gh-pages > /dev/null 2>&1
-
-
