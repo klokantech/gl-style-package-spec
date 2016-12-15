@@ -1,17 +1,9 @@
 #!/bin/bash
-# See https://medium.com/@nthgergo/publishing-gh-pages-with-travis-ci-53a8270e87db
-set -o errexit
-# https://docs.travis-ci.com/user/customizing-the-build#Implementing-Complex-Build-Steps
-set -ev
 
-npm install -g mapbox-gl-style-spec
 if [ -d ../icons ]; then
   npm install spritezero-cli
 fi
-npm install fs-extra
 
-gl-style-validate ../style.json
-node task/check-fonts.js
 rm -rf build
 mkdir build
 if [ -d ../icons ]; then

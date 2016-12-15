@@ -1,0 +1,26 @@
+{
+  "name": "gl-style-package-spec",
+  "version": "0.1.0",
+  "description": "Best practice for storing complete \"GL style\" for a map in a GitHub repo, gist, directory or a zip package.",
+  "main": "./task/run.js",
+  "scripts": {
+    "test": "node task/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/klokantech/gl-style-package-spec.git"
+  },
+  "authors": [
+    "Jiri Kozel <jiri.kozel@klokantech.com>",
+    "Petr Sloup <petr.sloup@klokantech.com>"
+  ],
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/klokantech/gl-style-package-spec/issues"
+  },
+  "homepage": "https://github.com/klokantech/gl-style-package-spec#readme",
+  "dependencies": {
+    "fs-extra": "^1.0.0",
+    "mapbox-gl-style-spec": "^8.9.0"
+  }
+}

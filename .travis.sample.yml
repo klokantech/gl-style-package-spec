@@ -12,4 +12,4 @@ addons:
 script:
   - git clone https://github.com/klokantech/gl-style-package-spec.git
   - cd gl-style-package-spec
-  - bash ./task/deploy.sh
+  - bash ./task/run.sh
