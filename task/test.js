@@ -14,4 +14,11 @@ if(errors && errors.length) {
   process.exit(1);
 }
 
+if(!style.sources.openmaptiles) {
+  console.log('WARNING: Style does not contain "openmaptiles" source.');
+}
+if(!style.metadata['openmaptiles:version']) {
+  console.log('WARNING: Style does not contain "openmaptiles:version" metadata.');
+}
+
 checkFonts(style);
