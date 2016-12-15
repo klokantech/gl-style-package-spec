@@ -1,4 +1,6 @@
 #!/bin/bash
+# https://docs.travis-ci.com/user/customizing-the-build#Implementing-Complex-Build-Steps
+set -ev
 
 if [ -d ../icons ]; then
   npm install spritezero-cli
