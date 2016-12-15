@@ -1,4 +1,3 @@
-var fs = require('fs-extra');
 
 var checkFonts = function(style) {
   var layersMissingFontSpec = [];
