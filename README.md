@@ -16,8 +16,9 @@ Warning: Following steps will automatically create/rewrite content of you `gh-pa
 - [Enable Travis for your repository](https://docs.travis-ci.com/user/getting-started/#To-get-started-with-Travis-CI%3A)
 - Copy `.travis.sample.yml` into your repository master as `.travis.yml`
 - Generate [personal access token](https://github.com/settings/tokens/new) if you don't have any
-- Encrypt it using `travis encrypt -r user/repo GITHUB_TOKEN=[the token here]` (install travis using `gem install travis`)
-- Insert following to your `.travis.yml`
+- Encrypt it using `travis encrypt -r [user]/[repo] GITHUB_TOKEN=[the token here]` (install travis using `gem install travis`)
+  - You can use also `--add` option when running this command to automatically append encrypted variable into your `.travis.yml`.
+- Insert following to your `.travis.yml` (if it was not inserted using `--add` option):
 ```
 env:
   global:
