@@ -61,3 +61,35 @@ exports.adjustStyleForLocal = function(opts) {
 	style.glyphs = "{fontstack}/{range}.pbf";
 
 };
+
+
+exports.adjustStyleForMapbox = function(opts) {
+
+	var style = opts.style;
+
+	delete style.created;
+	delete style.draft;
+	delete style.modified;
+
+	var metadata = style.metadata || {};
+
+	style.owner = style.owner || metadata['openmaptiles:mapbox:owner'];
+
+	if (style.sources['openmaptiles']) {
+		var omtsrc = style.sources['openmaptiles'];
+		if(!omtsrc.url.startsWith('mapbox://')) {
+			var sourceUrl = metadata['openmaptiles:mapbox:source:url']
+					|| "mapbox://<YOUR TILESET'S MAP ID>"
+			omtsrc.url = sourceUrl;
+		}
+	}
+
+	if(opts.needSprite) {
+	  style.sprite = "mapbox://sprites/"+style.owner+"/"+style.id;
+	} else {
+	  delete style.sprite;
+	}
+
+	style.glyphs = "mapbox://fonts/"+style.owner+"/{fontstack}/{range}.pbf";
+
+};
