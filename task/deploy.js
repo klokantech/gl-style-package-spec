@@ -7,7 +7,7 @@ fs.copySync('index.html', 'build/index.html');
 var stylePath = '../style.json';
 
 var needSprite = fs.existsSync('../icons');
-var slug = process.env.TRAVIS_REPO_SLUG || 'jirik/osm-bright-gl-style';
+var slug = process.env.TRAVIS_REPO_SLUG;
 
 var styleStr = fs.readFileSync(stylePath, 'utf8');
 
