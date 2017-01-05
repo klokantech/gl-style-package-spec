@@ -5,7 +5,6 @@ exports.adjustStyleForCdn = function(opts) {
 
 	delete style.created;
 	delete style.draft;
-	delete style.id;
 	delete style.modified;
 	delete style.owner;
 
