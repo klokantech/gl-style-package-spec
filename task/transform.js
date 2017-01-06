@@ -24,13 +24,7 @@ exports.adjustStyleForCdn = function(opts) {
 	  delete style.sprite;
 	}
 
-	style.glyphs = "https://fonts.openmaptiles.org/{fontstack}/{range}.pbf";
-
-	style.layers.forEach(function(layer) {
-	  if(layer.layout && layer.layout['text-font']) {
-	    layer.layout['text-font'] = layer.layout['text-font'].slice(0,1);
-	  }
-	});
+	style.glyphs = "https://demo.tileserver.org/fonts/{fontstack}/{range}.pbf";
 
 };
 
