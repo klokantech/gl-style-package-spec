@@ -10,5 +10,7 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
   bash ./task/deploy.sh
 fi
 if [ -n "$TRAVIS_TAG" ]; then
-  zip -r build/$TRAVIS_TAG.zip build/*
+  cd build
+  zip -r $TRAVIS_TAG.zip ./*
+  cd ../
 fi
