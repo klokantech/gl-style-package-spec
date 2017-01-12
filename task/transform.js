@@ -24,7 +24,7 @@ exports.adjustStyleForCdn = function(opts) {
 	  delete style.sprite;
 	}
 
-	style.glyphs = "https://demo.tileserver.org/fonts/{fontstack}/{range}.pbf";
+	style.glyphs = "https://free.tilehosting.com/fonts/{fontstack}/{range}.pbf?key=tXiQqN3lIgskyDErJCeY";
 
 };
 
