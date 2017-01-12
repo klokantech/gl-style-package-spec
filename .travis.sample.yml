@@ -5,6 +5,7 @@ node_js:
 branches:
   only:
   - master
+  - /^v\d+(\.\d+)*$/
 addons:
   apt:
     sources:
@@ -16,3 +17,10 @@ script:
 - git clone https://github.com/klokantech/gl-style-package-spec.git
 - cd gl-style-package-spec
 - bash ./task/run.sh
+deploy:
+  provider: releases
+  api_key: ${GITHUB_TOKEN}
+  file: build/${TRAVIS_TAG}.zip
+  skip_cleanup: true
+  on:
+    tags: true
