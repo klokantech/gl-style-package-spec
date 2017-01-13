@@ -39,10 +39,12 @@ exports.adjustStyleForLocal = function(opts) {
 	delete style.modified;
 	delete style.owner;
 
+
 	if (style.sources['openmaptiles']) {
+		var version = 'v'+style.metadata['openmaptiles:version'].split('.')[0];
 	  style.sources['openmaptiles'] = {
 	      "type": "vector",
-	      "url": "mbtiles://{openmaptiles}"
+	      "url": "mbtiles://{"+version+"}"
 	  }
 	}
 
