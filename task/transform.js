@@ -11,7 +11,7 @@ exports.adjustStyleForCdn = function(opts) {
 	if (style.sources['openmaptiles']) {
 	  style.sources['openmaptiles'] = {
 	    "type": "vector",
-	    "url": "https://free.tilehosting.com/data/v3.json?key=tXiQqN3lIgskyDErJCeY"
+	    "url": "https://free.tilehosting.com/data/v3.json?key=RiS4gsgZPZqeeMlIyxFo"
 	  }
 	}
 
@@ -24,7 +24,7 @@ exports.adjustStyleForCdn = function(opts) {
 	  delete style.sprite;
 	}
 
-	style.glyphs = "https://free.tilehosting.com/fonts/{fontstack}/{range}.pbf?key=tXiQqN3lIgskyDErJCeY";
+	style.glyphs = "https://free.tilehosting.com/fonts/{fontstack}/{range}.pbf?key=RiS4gsgZPZqeeMlIyxFo";
 
 };
 
