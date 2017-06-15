@@ -72,6 +72,10 @@ exports.decorate = function(style, cfg) {
       }
       newLayer.id += postfix ? '-'+postfix : '';
       newLayer.layout['text-field'] = decorator['layout.text-field'];
+      if(newLayer.layout['symbol-placement']==='line') {
+        newLayer.layout['text-field'] =
+            newLayer.layout['text-field'].replace('\n', ' ');
+      }
       var filterPart = decorator['filter-all-part'].concat();
       if(!newLayer.filter) {
         newLayer.filter = filterPart;
