@@ -26,6 +26,14 @@ transform.adjustStyleForCdn({
 });
 fs.writeFileSync('build/style-cdn.json', JSON.stringify(style, null, 2), 'utf8');
 
+var style = JSON.parse(styleStr);
+transform.adjustStyleForCdn({
+  style: style,
+  needSprite: needSprite,
+  slug: slug
+});
+fs.writeFileSync('build/style-cdn-undecorated.json', JSON.stringify(style, null, 2), 'utf8');
+
 style = JSON.parse(styleStr);
 transform.adjustStyleForLocal({
   style: style,
@@ -33,6 +41,13 @@ transform.adjustStyleForLocal({
   langCfg: langCfg
 });
 fs.writeFileSync('build/style-local.json', JSON.stringify(style, null, 2), 'utf8');
+
+style = JSON.parse(styleStr);
+transform.adjustStyleForLocal({
+  style: style,
+  needSprite: needSprite
+});
+fs.writeFileSync('build/style-local-undecorated.json', JSON.stringify(style, null, 2), 'utf8');
 
 style = JSON.parse(styleStr);
 transform.adjustStyleForMapbox({
