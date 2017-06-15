@@ -66,7 +66,7 @@ exports.decorate = function(style, cfg) {
 
       if(j>0) {
         var newLayer = JSON.parse(JSON.stringify(layer));
-        layers.splice(i, 0, newLayer);
+        layers.splice(i+1, 0, newLayer);
       } else {
         newLayer = layer;
       }
