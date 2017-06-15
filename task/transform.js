@@ -1,3 +1,4 @@
+var langFallback = require('./lang-fallback.js');
 
 exports.adjustStyleForCdn = function(opts) {
 
@@ -25,6 +26,11 @@ exports.adjustStyleForCdn = function(opts) {
 	}
 
 	style.glyphs = "https://free.tilehosting.com/fonts/{fontstack}/{range}.pbf?key=RiS4gsgZPZqeeMlIyxFo";
+
+	var langCfg = opts.langCfg;
+	if(langCfg) {
+		langFallback.decorate(style, langCfg);
+	}
 
 };
 
@@ -55,6 +61,11 @@ exports.adjustStyleForLocal = function(opts) {
 	}
 
 	style.glyphs = "{fontstack}/{range}.pbf";
+
+	var langCfg = opts.langCfg;
+	if(langCfg) {
+		langFallback.decorate(style, langCfg);
+	}
 
 };
 
