@@ -17,37 +17,44 @@ if(fs.existsSync(langCfgPath)) {
   var langCfg = JSON.parse(langCfgStr);
 }
 
-var style = JSON.parse(styleStr);
-transform.adjustStyleForCdn({
-  style: style,
-  needSprite: needSprite,
-  slug: slug,
-  langCfg: langCfg
-});
-fs.writeFileSync('build/style-cdn.json', JSON.stringify(style, null, 2), 'utf8');
+var style, outPath;
+if(langCfg) {
+  style = JSON.parse(styleStr);
+  transform.adjustStyleForCdn({
+    style: style,
+    needSprite: needSprite,
+    slug: slug,
+    langCfg: langCfg
+  });
+  fs.writeFileSync('build/style-cdn.json', JSON.stringify(style, null, 2), 'utf8');
+}
 
-var style = JSON.parse(styleStr);
+style = JSON.parse(styleStr);
 transform.adjustStyleForCdn({
   style: style,
   needSprite: needSprite,
   slug: slug
 });
-fs.writeFileSync('build/style-cdn-undecorated.json', JSON.stringify(style, null, 2), 'utf8');
+outPath = langCfg ? 'build/style-cdn-undecorated.json' : 'build/style-cdn.json';
+fs.writeFileSync(outPath, JSON.stringify(style, null, 2), 'utf8');
 
-style = JSON.parse(styleStr);
-transform.adjustStyleForLocal({
-  style: style,
-  needSprite: needSprite,
-  langCfg: langCfg
-});
-fs.writeFileSync('build/style-local.json', JSON.stringify(style, null, 2), 'utf8');
+if(langCfg) {
+  style = JSON.parse(styleStr);
+  transform.adjustStyleForLocal({
+    style: style,
+    needSprite: needSprite,
+    langCfg: langCfg
+  });
+  fs.writeFileSync('build/style-local.json', JSON.stringify(style, null, 2), 'utf8');
+}
 
 style = JSON.parse(styleStr);
 transform.adjustStyleForLocal({
   style: style,
   needSprite: needSprite
 });
-fs.writeFileSync('build/style-local-undecorated.json', JSON.stringify(style, null, 2), 'utf8');
+outPath = langCfg ? 'build/style-local-undecorated.json' : 'build/style-local.json';
+fs.writeFileSync(outPath, JSON.stringify(style, null, 2), 'utf8');
 
 style = JSON.parse(styleStr);
 transform.adjustStyleForMapbox({
