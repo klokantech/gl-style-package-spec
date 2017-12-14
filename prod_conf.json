@@ -1,0 +1,13 @@
+{
+  "tileserver_base": [
+    "http://a.tiles.maps.qwant.com:6533/oz/{z}/{x}/{y}.pbf",
+    "http://b.tiles.maps.qwant.com:6533/oz/{z}/{x}/{y}.pbf",
+    "http://c.tiles.maps.qwant.com:6533/oz/{z}/{x}/{y}.pbf"
+  ],
+  "tileserver_poi": [
+    "http://a.tiles.maps.qwant.com:6533/poi/{z}/{x}/{y}.pbf",
+    "http://b.tiles.maps.qwant.com:6533/poi/{z}/{x}/{y}.pbf",
+    "http://c.tiles.maps.qwant.com:6533/poi/{z}/{x}/{y}.pbf"
+  ],
+  "spriteserver": "https://rawgit.com/lukasmartinelli/osm-liberty/gh-pages/sprites/osm-liberty"
+}

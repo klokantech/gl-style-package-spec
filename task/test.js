@@ -1,10 +1,25 @@
 var fs = require('fs-extra');
-var mbgl = require('mapbox-gl-style-spec');
+var mbgl = require('@mapbox/mapbox-gl-style-spec');
 var execSync = require('child_process').execSync;
 var checkFonts = require('./check-fonts');
-var langFallback = require('./lang-fallback.js');
+const path = require('path');
+var yargs = require('yargs');
 
-var stylePath = '../style.json';
+let args = yargs
+  .usage('Usage: $0 [options]')
+  .options({
+    style_dir: {
+      describe: 'The folder with the style inside it',
+      type: 'string',
+      demandOption: true,
+      nargs: 1
+    }
+  })
+  .help('h')
+  .alias('h', 'help')
+  .argv;
+
+var stylePath = path.join(args.style_dir,'style.json');
 var styleString = fs.readFileSync(stylePath, 'utf8');
 var style = JSON.parse(styleString);
 
@@ -30,11 +45,4 @@ if(styleString.trim() !== formattedStyleString.trim()) {
   console.log(
     'WARNING: Style is not formatted. You should use "gl-style-format"\n' +
     'before commit. See https://github.com/mapbox/mapbox-gl-style-spec');
-}
-
-var langCfgPath = '../lang-fallback.json';
-if(fs.existsSync(langCfgPath)) {
-  var langCfgStr = fs.readFileSync(langCfgPath, 'utf8');
-  var langCfg = JSON.parse(langCfgStr);
-  langFallback.test(langCfg);
 }

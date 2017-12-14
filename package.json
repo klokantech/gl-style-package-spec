@@ -1,26 +1,31 @@
 {
-  "name": "gl-style-package-spec",
+  "name": "map-style-builder",
   "version": "0.1.0",
-  "description": "Best practice for storing complete \"GL style\" for a map in a GitHub repo, gist, directory or a zip package.",
+  "description": "Some tools to build and debug GL Style at Qwant",
   "main": "./task/run.js",
   "scripts": {
-    "test": "node task/test.js"
+    "test": "node task/test.js --style_dir ",
+    "build_all": "bash task/build.sh "
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/klokantech/gl-style-package-spec.git"
+    "url": "git+https://github.com/QwantResearch/map-style-builder"
   },
   "authors": [
+    "nlehuby <n.lehuby@qwant.com>",
+    "A. Desbordes <a.desbordes@qwant.com>",
     "Jiri Kozel <jiri.kozel@klokantech.com>",
     "Petr Sloup <petr.sloup@klokantech.com>"
   ],
   "license": "BSD-2-Clause",
   "bugs": {
-    "url": "https://github.com/klokantech/gl-style-package-spec/issues"
+    "url": "https://github.com/QwantResearch/map-style-builder/issues"
   },
-  "homepage": "https://github.com/klokantech/gl-style-package-spec#readme",
+  "homepage": "https://github.com/QwantResearch/map-style-builder#readme",
   "dependencies": {
     "fs-extra": "^1.0.0",
-    "mapbox-gl-style-spec": "^8.9.0"
+    "yargs": "^5.0.0",
+    "@mapbox/mapbox-gl-style-spec": "^8.9.0",
+    "spritezero-cli": "^1.2.0"
   }
 }
