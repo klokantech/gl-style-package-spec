@@ -1,4 +1,5 @@
 var langFallback = require('./lang-fallback.js');
+var decorateLayers = require('./decorate-layers.js');
 
 exports.adjustStyleForCdn = function(opts) {
 
@@ -16,7 +17,7 @@ exports.adjustStyleForCdn = function(opts) {
 	  }
 	}
 
-	if(opts.needSprite) {
+	if(opts.needSprite && opts.slug) {
 	  var slug = opts.slug.split('/');
 	  var user = slug[0];
 	  var repo = slug[1];
@@ -30,6 +31,11 @@ exports.adjustStyleForCdn = function(opts) {
 	var langCfg = opts.langCfg;
 	if(langCfg) {
 		langFallback.decorate(style, langCfg);
+	}
+
+	var decorateCfg = opts.decorateCfg;
+	if(decorateCfg) {
+		decorateLayers.decorate(style, decorateCfg);
 	}
 
 };
@@ -65,6 +71,11 @@ exports.adjustStyleForLocal = function(opts) {
 	var langCfg = opts.langCfg;
 	if(langCfg) {
 		langFallback.decorate(style, langCfg);
+	}
+
+	var decorateCfg = opts.decorateCfg;
+	if(decorateCfg) {
+		decorateLayers.decorate(style, decorateCfg);
 	}
 
 };
