@@ -14,8 +14,8 @@ if [ -d ../icons ]; then
 fi
 node task/deploy.js
 
-git config --global user.email "openmaptiles@klokantech.com"
-git config --global user.name "OpenMapTiles Travis"
+#git config --global user.email "openmaptiles@klokantech.com"
+#git config --global user.name "OpenMapTiles Travis"
 
 # deploy
 cd build

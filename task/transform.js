@@ -1,102 +1,84 @@
-var langFallback = require('./lang-fallback.js');
+exports.adjust_style_without_tilejson = function(opts, tiles_url_base, tiles_url_poi) {
 
-exports.adjustStyleForCdn = function(opts) {
+  var style = opts.style;
 
-	var style = opts.style;
+  delete style.created;
+  delete style.draft;
+  delete style.modified;
+  delete style.owner;
 
-	delete style.created;
-	delete style.draft;
-	delete style.modified;
-	delete style.owner;
+  if (style.sources['openmaptiles']) {
+    style.sources['openmaptiles'] = {
+      "type": "vector",
+      "tiles": tiles_url_base,
+      "name": "OpenMapTiles",
+      "format": "pbf",
+      "basename": "v3.6.mbtiles",
+      "id": "openmaptiles",
+      "attribution": "Qwant Maps <a href=\"http://www.openmaptiles.org/\" target=\"_blank\">&copy; OpenMapTiles</a> <a href=\"http://www.openstreetmap.org/about/\" target=\"_blank\">&copy; OpenStreetMap contributors</a>",
+      "center": [-12.2168, 28.6135, 4],
+      "description": "Une adaptation des tuiles OpenMapTiles pour Qwant Maps",
+      "maxzoom": 15,
+      "minzoom": 0,
+      "pixel_scale": "256",
+    }
+  }
+  if (style.sources['poi']) {
+    style.sources['poi'] = {
+      "type": "vector",
+      "tiles": tiles_url_poi,
+      "name": "OpenMapTiles POIs",
+      "format": "pbf",
+      "basename": "v3.6.mbtiles",
+      "id": "poi",
+      "center": [-12.2168, 28.6135, 4],
+      "description": "Une adaptation des tuiles OpenMapTiles pour Qwant Maps - des POIs",
+      "maxzoom": 15,
+      "minzoom": 12,
+      "pixel_scale": "256",
+    }
+  }
+  if (opts.needSprite) {
+    style.sprite = "https://rawgit.com/lukasmartinelli/osm-liberty/gh-pages/sprites/osm-liberty"; // TODO : use the built sprite instead
+  } else {
+    delete style.sprite;
+  }
 
-	if (style.sources['openmaptiles']) {
-	  style.sources['openmaptiles'] = {
-	    "type": "vector",
-	    "url": "https://free.tilehosting.com/data/v3.json?key=RiS4gsgZPZqeeMlIyxFo"
-	  }
-	}
+  style.glyphs = "https://free.tilehosting.com/fonts/{fontstack}/{range}.pbf?key=RiS4gsgZPZqeeMlIyxFo";
 
-	if(opts.needSprite) {
-	  var slug = opts.slug.split('/');
-	  var user = slug[0];
-	  var repo = slug[1];
-	  style.sprite = "https://"+user+".github.io/"+repo+"/sprite";
-	} else {
-	  delete style.sprite;
-	}
-
-	style.glyphs = "https://free.tilehosting.com/fonts/{fontstack}/{range}.pbf?key=RiS4gsgZPZqeeMlIyxFo";
-
-	var langCfg = opts.langCfg;
-	if(langCfg) {
-		langFallback.decorate(style, langCfg);
-	}
 
 };
 
 
-exports.adjustStyleForLocal = function(opts) {
+exports.adjustStyleForOpenMapTilesCDN = function(opts) {
 
-	var style = opts.style;
+  var style = opts.style;
 
-	delete style.created;
-	delete style.draft;
-	delete style.id;
-	delete style.modified;
-	delete style.owner;
+  delete style.created;
+  delete style.draft;
+  delete style.modified;
+  delete style.owner;
 
+  if (style.sources['openmaptiles']) {
+    style.sources['openmaptiles'] = {
+      "type": "vector",
+      "url": "https://free.tilehosting.com/data/v3.json?key=RiS4gsgZPZqeeMlIyxFo"
+    }
+  }
+  if (style.sources['poi']) {
+    style.sources['poi'] = {
+      "type": "vector",
+      "url": "https://free.tilehosting.com/data/v3.json?key=RiS4gsgZPZqeeMlIyxFo"
+    }
+  }
 
-	if (style.sources['openmaptiles']) {
-		var version = 'v'+style.metadata['openmaptiles:version'].split('.')[0];
-	  style.sources['openmaptiles'] = {
-	      "type": "vector",
-	      "url": "mbtiles://{"+version+"}"
-	  }
-	}
+  if (opts.needSprite) {
+    style.sprite = "https://rawgit.com/lukasmartinelli/osm-liberty/gh-pages/sprites/osm-liberty";
+  } else {
+    delete style.sprite;
+  }
 
-	if(opts.needSprite) {
-	  style.sprite = "{styleJsonFolder}/sprite";
-	} else {
-	  delete style.sprite;
-	}
+  style.glyphs = "https://free.tilehosting.com/fonts/{fontstack}/{range}.pbf?key=RiS4gsgZPZqeeMlIyxFo";
 
-	style.glyphs = "{fontstack}/{range}.pbf";
-
-	var langCfg = opts.langCfg;
-	if(langCfg) {
-		langFallback.decorate(style, langCfg);
-	}
-
-};
-
-
-exports.adjustStyleForMapbox = function(opts) {
-
-	var style = opts.style;
-
-	delete style.created;
-	delete style.draft;
-	delete style.modified;
-
-	var metadata = style.metadata || {};
-
-	style.owner = style.owner || metadata['openmaptiles:mapbox:owner'];
-
-	if (style.sources['openmaptiles']) {
-		var omtsrc = style.sources['openmaptiles'];
-		if(!omtsrc.url.startsWith('mapbox://')) {
-			var sourceUrl = metadata['openmaptiles:mapbox:source:url']
-					|| "mapbox://<YOUR TILESET'S MAP ID>"
-			omtsrc.url = sourceUrl;
-		}
-	}
-
-	if(opts.needSprite) {
-	  style.sprite = "mapbox://sprites/"+style.owner+"/"+style.id;
-	} else {
-	  delete style.sprite;
-	}
-
-	style.glyphs = "mapbox://fonts/"+style.owner+"/{fontstack}/{range}.pbf";
 
 };

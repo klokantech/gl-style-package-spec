@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8' />
+  <title>Comparons-nous aux meilleurs !</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.css' rel='stylesheet' />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <style>
+    body {
+      overflow: hidden;
+    }
+
+    body * {
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+
+    #leftSelect,
+    #rightSelect {
+      position: absolute;
+      opacity: 0.3;
+      transition: opacity 0.3s;
+    }
+
+    #leftSelect:hover,
+    #rightSelect:hover {
+      opacity: 1;
+    }
+
+    #leftSelect {
+      left: 0;
+    }
+
+    #rightSelect {
+      right: 0;
+    }
+  </style>
+  <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.1.0/mapbox-gl-compare.js'></script>
+  <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.1.0/mapbox-gl-compare.css' type='text/css' />
+
+  <div id='before' class='map'></div>
+  <div id='after' class='map'></div>
+
+  <select id="leftSelect" onchange="updateSource(this)"></select>
+  <select id="rightSelect" onchange="updateSource(this)"></select>
+
+  <script>
+    mapboxgl.accessToken = 'insert your mapbox token here'
+
+    var beforeMap = new mapboxgl.Map({
+      container: 'before',
+      style: 'built-style.json',
+      zoom: 16,
+      center: [2.2816, 48.8706],
+      hash: true
+    })
+    var afterMap = new mapboxgl.Map({
+      container: 'after',
+      style: 'mapbox://styles/mapbox/streets-v9',
+      center: [2.2816, 48.8706],
+      zoom: 16
+    })
+
+    var map = new mapboxgl.Compare(beforeMap, afterMap, {
+      // Set this to enable comparing two maps by mouse movement:
+      //mousemove: true
+    })
+    afterMap.addControl(new mapboxgl.NavigationControl())
+
+
+    styles = [
+      'built-style.json',
+      'style-omt.json',
+      'mapbox://styles/mapbox/streets-v9'
+    ]
+
+    styles.forEach(function(mapStyle, i) {
+      var mapStyleName = mapStyle.replace(/_/g, ' ').replace(/\.json/, '')
+      leftSelect.innerHTML += '<option value="' + mapStyle + '">' + mapStyleName + '</option>'
+      rightSelect.innerHTML += '<option value="' + mapStyle + '" ' + (i == 2 ? "selected" : "") + '>' + mapStyleName + '</option>'
+    })
+
+    function updateSource(input) {
+      if (input.id === 'rightSelect') {
+        afterMap.setStyle(input.value)
+      } else {
+        beforeMap.setStyle(input.value)
+      }
+    }
+  </script>
+
+</body>
+
+</html>
