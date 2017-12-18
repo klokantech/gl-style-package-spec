@@ -13,12 +13,12 @@ The build command will generate some sprites out of your icons folder and create
 - A json configuration file, with some url in it. See `prod_conf.json` if you need inspiration
 
 #### Usage
-`npm run build_all -- PATH/TO/YOUR/MAPSTYLE/ PATH/TO/YOUR/CONF`
+`npm run build_all -- PATH/TO/YOUR/MAPSTYLE/FOLDER PATH/TO/YOUR/CONF`
 
 You can also define this package as a dependency of your style node package.
 
 ### Test
-`npm test -- PATH/TO/YOUR/MAPSTYLE/` to check if your style is ok
+`npm test -- PATH/TO/YOUR/MAPSTYLE/FOLDER` to check if your style is ok
 
 ## Compare
 You can use the built `compare.html` page to check your style builds.
