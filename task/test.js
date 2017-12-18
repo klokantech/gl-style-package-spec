@@ -33,8 +33,11 @@ if(errors && errors.length) {
 
 checkFonts(style);
 
-if(!style.sources.openmaptiles) {
-  console.log('WARNING: Style does not contain "openmaptiles" source.');
+if(!style.sources.basemap) {
+  console.log('WARNING: Style does not contain "basemap" source.');
+}
+if(!style.sources.poi) {
+  console.log('WARNING: Style does not contain "poi" source.');
 }
 if(!style.metadata['openmaptiles:version']) {
   console.log('WARNING: Style does not contain "openmaptiles:version" metadata.');
@@ -44,5 +47,5 @@ var formattedStyleString = mbgl.format(style);
 if(styleString.trim() !== formattedStyleString.trim()) {
   console.log(
     'WARNING: Style is not formatted. You should use "gl-style-format"\n' +
-    'before commit. See https://github.com/mapbox/mapbox-gl-style-spec');
+    'before commit. See https://github.com/mapbox/mapbox-gl-js/blob/master/src/style-spec/README.md');
 }
