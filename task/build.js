@@ -26,46 +26,40 @@ let args = yargs
   .argv;
 
 const buildDir = path.join(args.style_dir,'build');
-
-/*
-fs.removeSync(buildDir);
-fs.mkdirsSync(buildDir);*/
-
-fs.copySync(path.join(__dirname, '..', 'compare.html'), path.join(buildDir, 'compare.html'));
-fs.copySync(path.join(__dirname, '..', 'debug.html'), path.join(buildDir, 'debug.html'));
-
 var needSprite = fs.existsSync(path.join(args.style_dir,'icons'));
 
 /*
-if (needSprite){
-  //TODO : build sprites and sprite retina
-}*/
+fs.removeSync(buildDir);
 
-var slug = "qwantresearch/qwantmaps";
+fs.mkdirsSync(buildDir);
+
+if (needSprite){
+  //TODO : build sprite and sprite retina here, instead of in the bash script
+}*/
 
 var stylePath = path.join(args.style_dir,'style.json');
 var styleStr = fs.readFileSync(stylePath, 'utf8');
-
 var confStr = fs.readFileSync(args.conf, 'utf8');
 var jsonconf = JSON.parse(confStr);
+var style = JSON.parse(styleStr);
 
-var style, outPath;
+var outPath;
 
-style = JSON.parse(styleStr);
-transform.adjust_style_without_tilejson({
+transform.adjustStyleWithoutTilejson({
   style: style,
   needSprite: needSprite,
-  slug: slug
-}, jsonconf.tileserver_base, jsonconf.tileserver_poi);
+  conf_url: jsonconf
+} );
 outPath = path.join(buildDir,'built-style.json');
 fs.writeFileSync(outPath, JSON.stringify(style, null, 2), 'utf8');
 
-
-style = JSON.parse(styleStr);
 transform.adjustStyleForOpenMapTilesCDN({
   style: style,
   needSprite: needSprite,
-  slug: slug
 });
 outPath = path.join(buildDir,'style-omt.json');
 fs.writeFileSync(outPath, JSON.stringify(style, null, 2), 'utf8');
+
+
+fs.copySync(path.join(__dirname, '..', 'compare.html'), path.join(buildDir, 'compare.html'));
+fs.copySync(path.join(__dirname, '..', 'debug.html'), path.join(buildDir, 'debug.html'));
