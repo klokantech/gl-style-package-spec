@@ -38,10 +38,18 @@ if (needSprite){
 }*/
 
 var stylePath = path.join(args.style_dir,'style.json');
-var styleStr = fs.readFileSync(stylePath, 'utf8');
+var tileSchemaBasePath = path.join(args.style_dir,'tileschema_base.json');
+var tileSchemaPoiPath = path.join(args.style_dir,'tileschema_poi.json');
+
 var confStr = fs.readFileSync(args.conf, 'utf8');
+var styleStr = fs.readFileSync(stylePath, 'utf8');
+var tileSchemaBaseStr = fs.readFileSync(tileSchemaBasePath, 'utf8');
+var tileSchemaPoiStr = fs.readFileSync(tileSchemaPoiPath, 'utf8');
+
 var jsonconf = JSON.parse(confStr);
 var style = JSON.parse(styleStr);
+var tileSchemaBase = JSON.parse(tileSchemaBaseStr);
+var tileSchemaPoi = JSON.parse(tileSchemaPoiStr);
 
 var outPath;
 
@@ -51,6 +59,16 @@ transform.adjustStyleWithoutTilejson({
   conf_url: jsonconf
 } );
 outPath = path.join(buildDir,'built-style.json');
+fs.writeFileSync(outPath, JSON.stringify(style, null, 2), 'utf8');
+
+transform.adjustStyleWithTilejson({
+  style: style,
+  needSprite: needSprite,
+  conf_url: jsonconf,
+  tileschema_base: tileSchemaBase,
+  tileschema_poi: tileSchemaPoi,
+} );
+outPath = path.join(buildDir,'built-style-debug.json');
 fs.writeFileSync(outPath, JSON.stringify(style, null, 2), 'utf8');
 
 transform.adjustStyleForOpenMapTilesCDN({
