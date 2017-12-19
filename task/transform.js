@@ -7,8 +7,8 @@ exports.adjust_style_without_tilejson = function(opts, tiles_url_base, tiles_url
   delete style.modified;
   delete style.owner;
 
-  if (style.sources['openmaptiles']) {
-    style.sources['openmaptiles'] = {
+  if (style.sources['basemap']) {
+    style.sources['basemap'] = {
       "type": "vector",
       "tiles": tiles_url_base,
       "name": "OpenMapTiles",
@@ -59,8 +59,8 @@ exports.adjustStyleForOpenMapTilesCDN = function(opts) {
   delete style.modified;
   delete style.owner;
 
-  if (style.sources['openmaptiles']) {
-    style.sources['openmaptiles'] = {
+  if (style.sources['basemap']) {
+    style.sources['basemap'] = {
       "type": "vector",
       "url": "https://free.tilehosting.com/data/v3.json?key=RiS4gsgZPZqeeMlIyxFo"
     }
