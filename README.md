@@ -8,7 +8,8 @@ The build command will generate some sprites out of your icons folder and create
 
 #### Requirements
 - A repository with
-  - Style saved as a `style.json` in root
+  - Style saved as a `style.json`
+  - TileJSON, with the schema of the tiles, saved as `tileschema_base.json` and  `tileschema_poi.json`
   - Icons used in style saved as SVG files inside `icons/`
 - A json configuration file, with some url in it. See `prod_conf.json` if you need inspiration
 

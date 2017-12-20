@@ -1,6 +1,7 @@
-exports.adjust_style_without_tilejson = function(opts, tiles_url_base, tiles_url_poi) {
+exports.adjustStyleWithoutTilejson = function(opts) {
 
   var style = opts.style;
+  var conf = opts.conf_url;
 
   delete style.created;
   delete style.draft;
@@ -10,7 +11,7 @@ exports.adjust_style_without_tilejson = function(opts, tiles_url_base, tiles_url
   if (style.sources['basemap']) {
     style.sources['basemap'] = {
       "type": "vector",
-      "tiles": tiles_url_base,
+      "tiles": conf.tileserver_base,
       "name": "OpenMapTiles",
       "format": "pbf",
       "basename": "v3.6.mbtiles",
@@ -26,7 +27,7 @@ exports.adjust_style_without_tilejson = function(opts, tiles_url_base, tiles_url
   if (style.sources['poi']) {
     style.sources['poi'] = {
       "type": "vector",
-      "tiles": tiles_url_poi,
+      "tiles": conf.tileserver_poi,
       "name": "OpenMapTiles POIs",
       "format": "pbf",
       "basename": "v3.6.mbtiles",
@@ -39,16 +40,48 @@ exports.adjust_style_without_tilejson = function(opts, tiles_url_base, tiles_url
     }
   }
   if (opts.needSprite) {
-    style.sprite = "https://rawgit.com/lukasmartinelli/osm-liberty/gh-pages/sprites/osm-liberty"; // TODO : use the built sprite instead
+    style.sprite = conf.spriteserver + "sprite";
   } else {
     delete style.sprite;
   }
 
+  //TODO : build font
   style.glyphs = "https://free.tilehosting.com/fonts/{fontstack}/{range}.pbf?key=RiS4gsgZPZqeeMlIyxFo";
-
 
 };
 
+exports.adjustStyleWithTilejson = function(opts) {
+
+  var style = opts.style;
+  var tileschema_base = opts.tileschema_base;
+  var tileschema_poi = opts.tileschema_poi;
+  var conf = opts.conf_url;
+
+  delete style.created;
+  delete style.draft;
+  delete style.modified;
+  delete style.owner;
+
+  if (style.sources['basemap']) {
+    tileschema_base['type'] = "vector";
+    tileschema_base['tiles'] = conf.tileserver_base;
+    style.sources['basemap'] = tileschema_base;
+  }
+  if (style.sources['poi']) {
+    tileschema_poi['type'] = "vector";
+    tileschema_poi['tiles'] = conf.tileserver_poi;
+    style.sources['poi'] = tileschema_poi;
+  }
+  if (opts.needSprite) {
+    style.sprite = conf.spriteserver + "sprite";
+  } else {
+    delete style.sprite;
+  }
+
+  //TODO : build font
+  style.glyphs = "https://free.tilehosting.com/fonts/{fontstack}/{range}.pbf?key=RiS4gsgZPZqeeMlIyxFo";
+
+};
 
 exports.adjustStyleForOpenMapTilesCDN = function(opts) {
 
