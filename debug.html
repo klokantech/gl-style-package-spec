@@ -43,6 +43,41 @@
 
     var nav_control = new mapboxgl.NavigationControl();;
     map.addControl(nav_control, 'bottom-right');
+
+    map.on('load', function () {
+      for (const lvl of ['poi-level-1', 'poi-level-2', 'poi-level-3']) {
+        map.on('mousemove', lvl, function (e) {
+          // Change the cursor style as a UI indicator.
+          map.getCanvas().style.cursor = 'pointer';
+        });
+        map.on('mouseleave', lvl, function () {
+          map.getCanvas().style.cursor = '';
+        });
+        map.on('click', lvl, function (e) {
+          // Single out the first found feature.
+          var feature = e.features[0];
+          var popup_content = feature.properties.name || "pas de nom :("
+
+          const tags = JSON.parse(feature.properties.tags)
+
+          let html = feature.properties.name;
+          html += '<ul>'
+          for (const [k, v] of Object.entries(tags)) {
+            html += '<li>' + k + ': ' + v + '</li>'
+          }
+          html += '</ul>'
+
+          // Display a popup
+          var popup = new mapboxgl.Popup({
+            closeButton: false
+          }).setLngLat(e.lngLat)
+            .setHTML(html)
+            .addTo(map);
+        });
+      }
+
+    });
+
   </script>
 
 </body>
