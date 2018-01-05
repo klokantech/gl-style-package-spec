@@ -1,5 +1,5 @@
 {
-  "name": "map-style-builder",
+  "name": "@qwant/map-style-builder",
   "version": "0.1.0",
   "description": "Some tools to build and debug GL Style at Qwant",
   "main": "./task/run.js",
