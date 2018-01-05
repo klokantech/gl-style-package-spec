@@ -3,7 +3,7 @@
 set -ev
 
 if [ -d $1/icons ]; then
-  npm install spritezero-cli
+  npm install @mapbox/spritezero-cli
 fi
 
 rm -rf $1/build
