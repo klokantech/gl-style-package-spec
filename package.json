@@ -1,11 +1,11 @@
 {
   "name": "@qwant/map-style-builder",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Some tools to build and debug GL Style at Qwant",
   "main": "./task/run.js",
   "scripts": {
     "test": "node task/test.js --style_dir ",
-    "build_all": "bash task/build.sh "
+    "build_all": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -24,9 +24,10 @@
   "homepage": "https://github.com/QwantResearch/map-style-builder#readme",
   "dependencies": {
     "@mapbox/mapbox-gl-style-spec": "^10.1.0",
-    "@mapbox/spritezero-cli": "2.1.0",
+    "@mapbox/spritezero": "5.0.0",
     "fs-extra": "^1.0.0",
     "rw": "^1.3.3",
-    "yargs": "^5.0.0"
+    "yargs": "^5.0.0",
+    "glob": "7.1.2"
   }
 }
