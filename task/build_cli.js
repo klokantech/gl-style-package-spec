@@ -6,10 +6,19 @@ const mkdirp = require('mkdirp')
 const args = yargs
   .usage('Usage: $0 [options]')
   .options({
-    style_dir: {
+    'style-dir': {
       describe: 'The folder with the style inside it',
       type: 'string',
       demandOption: true,
+      nargs: 1
+    }
+  })
+  .options({
+    'pixel-ratio': {
+      describe: 'The pixel ratio',
+      type: 'int',
+      default: 1,
+      demandOption: false,
       nargs: 1
     }
   })
@@ -25,36 +34,35 @@ const args = yargs
   .alias('h', 'help')
   .argv
 
-const buildDir = path.join(args.style_dir, 'build')
-const stylePath = path.join(args.style_dir,'style.json')
+
+const buildDir = path.join(args['style-dir'], 'build')
+const stylePath = path.join(args['style-dir'], 'style.json')
 const confStr = fs.readFileSync(args.conf, 'utf8')
 const styleStr = fs.readFileSync(stylePath, 'utf8')
 const style = JSON.parse(styleStr)
 const jsonconf = JSON.parse(confStr)
 
 let options = {
-  styleDir : args.style_dir,
-  conf : jsonconf,
-  outPath : buildDir
+  styleDir: args['style-dir'],
+  conf: jsonconf,
+  pixelRatios: [args['pixel-ratio']],
+  outPath: buildDir
 }
 
 mkdirp(buildDir)
 options.output = 'production'
 const builtStyle = build(style, options)
-outPath = path.join(buildDir,'built-style.json')
+outPath = path.join(buildDir, 'built-style.json')
 fs.writeFileSync(outPath, builtStyle, 'utf8')
-
-console.log(">>")
-console.log(buildDir)
 
 options.output = 'debug'
 const builtStyleDebug = build(style, options)
-outPath = path.join(buildDir,'built-style-debug.json')
+outPath = path.join(buildDir, 'built-style-debug.json')
 fs.writeFileSync(outPath, JSON.stringify(JSON.parse(builtStyleDebug), null, 2), 'utf8') //trick to restore formatting
 
 options.output = 'omt'
 const builtStyleOmt = build(style, options)
-outPath = path.join(buildDir,'style-omt.json')
+outPath = path.join(buildDir, 'style-omt.json')
 fs.writeFileSync(outPath, builtStyleOmt, 'utf8')
 
 
