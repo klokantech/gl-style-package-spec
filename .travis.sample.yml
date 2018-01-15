@@ -14,9 +14,9 @@ addons:
     packages:
     - libstdc++6
 script:
-- git clone https://github.com/klokantech/gl-style-package-spec.git
+- git clone https://github.com/QwantResearch/qwant-basic-gl-style.git
 - cd gl-style-package-spec
-- bash ./task/run.sh
+- npm run build_all -- --style_dir=../style --conf=../maps-tileview/config/map_dev.json
 deploy:
   provider: releases
   api_key: ${GITHUB_TOKEN}
