@@ -36,5 +36,5 @@ cd ..
 git add preview/
 git commit -m "Add previews to Github Pages"
 echo "Pushing"
-git push --quiet "https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git" master:gh-pages > /dev/null 2>&1
+git push --quiet "https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git" master:gh-pages
 echo "Pushed"
