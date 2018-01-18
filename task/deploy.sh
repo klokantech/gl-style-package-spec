@@ -23,3 +23,12 @@ git init
 git add .
 git commit -m "Deploy to Github Pages"
 git push --force --quiet "https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git" master:gh-pages > /dev/null 2>&1
+
+mkdir preview
+cd preview
+docker pull klokantech/thumbnail-gl
+docker run -v $(pwd):/data klokantech/thumbnail-gl "https://raw.githubusercontent.com/${TRAVIS_REPO_SLUG}/gh-pages/style-cdn.json"
+cd ..
+git add preview/
+git commit -m "Add previews to Github Pages"
+git push --quiet "https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git" master:gh-pages > /dev/null 2>&1
