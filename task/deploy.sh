@@ -20,7 +20,7 @@ git config --global user.name "OpenMapTiles Travis"
 cd build
 
 # hack: renders preview of last-but-one commit
-# doing it after first push often crashed on travis with
+# doing it after first push often crashed on Travis CI with
 #   [ERROR] {mbgl-render}[Style]: Failed to load sprite: HTTP status code 404
 mkdir preview
 cd preview
