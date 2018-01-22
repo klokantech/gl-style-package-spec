@@ -20,22 +20,16 @@ git config --global user.name "OpenMapTiles Travis"
 cd build
 
 # hack: renders preview of last-but-one commit
-# doing it after first push ended with
+# doing it after first push often crashed on travis with
 #   [ERROR] {mbgl-render}[Style]: Failed to load sprite: HTTP status code 404
 mkdir preview
 cd preview
-echo "Pulling"
 docker pull klokantech/thumbnail-gl
-echo "Generating thumbnails"
 docker run -v $(pwd):/data klokantech/thumbnail-gl "https://raw.githubusercontent.com/${TRAVIS_REPO_SLUG}/gh-pages/style-cdn.json"
-ls -la
 cd ..
 
 # deploy
-ls -la
 git init
 git add .
 git commit -m "Deploy to Github Pages"
-echo "Pushing"
 git push --force --quiet "https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git" master:gh-pages > /dev/null 2>&1
-echo "Pushed"
