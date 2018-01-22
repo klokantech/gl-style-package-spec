@@ -17,6 +17,8 @@ node task/deploy.js
 git config --global user.email "openmaptiles@klokantech.com"
 git config --global user.name "OpenMapTiles Travis"
 
+cd build
+
 # hack: renders preview of last-but-one commit
 # doing it after first push ended with
 #   [ERROR] {mbgl-render}[Style]: Failed to load sprite: HTTP status code 404
@@ -26,10 +28,11 @@ echo "Pulling"
 docker pull klokantech/thumbnail-gl
 echo "Generating thumbnails"
 docker run -v $(pwd):/data klokantech/thumbnail-gl "https://raw.githubusercontent.com/${TRAVIS_REPO_SLUG}/gh-pages/style-cdn.json"
+ls -la
 cd ..
 
 # deploy
-cd build
+ls -la
 git init
 git add .
 git commit -m "Deploy to Github Pages"
