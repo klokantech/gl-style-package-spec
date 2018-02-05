@@ -9,5 +9,5 @@
     "http://b.tiles.maps.qwant.com:6533/poi/{z}/{x}/{y}.pbf",
     "http://c.tiles.maps.qwant.com:6533/poi/{z}/{x}/{y}.pbf"
   ],
-  "spriteserver": "https://maps.qwant.com/"
+  "spriteserver": "https://qwantresearch.github.io/qwant-basic-gl-style/"
 }
