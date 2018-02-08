@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/klokantech/gl-style-package-spec#readme",
   "dependencies": {
-    "fs-extra": "^1.0.0",
-    "mapbox-gl-style-spec": "^8.9.0"
+    "@mapbox/mapbox-gl-style-spec": "^11.1.0",
+    "fs-extra": "^1.0.0"
   }
 }

@@ -1,5 +1,5 @@
 var fs = require('fs-extra');
-var mbgl = require('mapbox-gl-style-spec');
+var mbgl = require('@mapbox/mapbox-gl-style-spec');
 var execSync = require('child_process').execSync;
 var checkFonts = require('./check-fonts');
 var langFallback = require('./lang-fallback.js');
