@@ -13,7 +13,7 @@ exports.adjustStyleForCdn = function(opts) {
 	if (style.sources['openmaptiles']) {
 	  style.sources['openmaptiles'] = {
 	    "type": "vector",
-	    "url": "https://maps.tilehosting.com/data/v3.json?key=SymbVzXrAD6Jmqe6yBOS"
+	    "url": "https://api.maptiler.com/tiles/v3/tiles.json?key=Xfb74aIJXmRrUdfJyYo5"
 	  }
 	}
 
@@ -26,7 +26,7 @@ exports.adjustStyleForCdn = function(opts) {
 	  delete style.sprite;
 	}
 
-	style.glyphs = "https://maps.tilehosting.com/fonts/{fontstack}/{range}.pbf?key=SymbVzXrAD6Jmqe6yBOS";
+	style.glyphs = "https://api.maptiler.com/fonts/{fontstack}/{range}.pbf?key=Xfb74aIJXmRrUdfJyYo5";
 
 	var langCfg = opts.langCfg;
 	if(langCfg) {
