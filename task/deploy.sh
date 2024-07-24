@@ -3,7 +3,7 @@
 set -ev
 
 if [ -d ../icons ]; then
-  npm install spritezero-cli
+  npm install @beyondtracks/spritezero-cli
 fi
 
 rm -rf build
